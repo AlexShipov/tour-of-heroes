@@ -27,10 +27,10 @@ export class HeroSearchComponent implements OnInit {
         private heroSearchService: HeroSearchService,
         private router: Router) { }
     // Push a search term into the observable stream.
-    search(term: string): void {
+    public search(term: string): void {
         this.searchTerms.next(term);
     }
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.heroes = this.searchTerms
             .debounceTime(300)        // wait 500ms after each keystroke before considering the term
             .distinctUntilChanged()   // ignore if next search term is same as previous
@@ -45,7 +45,7 @@ export class HeroSearchComponent implements OnInit {
                 return Observable.of<Hero[]>([]);
             });
     }
-    gotoDetail(hero: Hero): void {
+    public gotoDetail(hero: Hero): void {
         let link = ['/detail', hero.id];
         this.router.navigate(link);
     }
